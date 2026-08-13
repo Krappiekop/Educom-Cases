@@ -1,33 +1,9 @@
-﻿Random random = new Random();
-int daysUntilExpiration = random.Next(12);
-int discountPercentage = 0;
+﻿string[] names = {"B123", "C234", "A345", "C15", "B177", "G3003", "C235", "B179"};
 
-// Your code goes here
-if (daysUntilExpiration <= 10)
+foreach (string name in names)
 {
-    if (daysUntilExpiration <= 5)
+    if (name.StartsWith("B"))
     {
-        if (daysUntilExpiration <= 1)
-        {
-            if (daysUntilExpiration == 0)
-            {
-                Console.WriteLine($"Your subscription has expired.");
-            }
-            else
-            {
-                discountPercentage = 20;
-                Console.WriteLine($"Your subscription expires within a day.\n Renew now and save {discountPercentage}%!");
-            }
-        }
-        else
-        {
-            discountPercentage = 10;
-            Console.WriteLine($"Your subscription expires in {daysUntilExpiration} days.\n Renew now and save {discountPercentage}%!");
-        }
-    }
-    else
-    {
-        Console.WriteLine("Your subscription will expire soon. Renew now!");
+        Console.WriteLine($"The name {name} starts with 'B'!");
     }
 }
-
