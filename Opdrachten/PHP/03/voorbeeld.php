@@ -44,7 +44,7 @@ for ($i=0; $i < sizeof($columns); $i++) {
 
 echo "</form>\n";
 
-
+/*
 //laat zien wat er in de POST zat
 
 if (!empty($_POST)) {
@@ -53,4 +53,5 @@ if (!empty($_POST)) {
 	var_dump($_POST);
 	echo "</pre>";
 }
+	*/
 ?>
