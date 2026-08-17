@@ -1,9 +1,28 @@
-﻿string[] names = {"B123", "C234", "A345", "C15", "B177", "G3003", "C235", "B179"};
+﻿string? readResult;
+int numericValue = 0;
+bool validNummer = false;
 
-foreach (string name in names)
+
+Console.WriteLine("Vul een geheel getal in tusseen de 5 en 10.");
+
+do
 {
-    if (name.StartsWith("B"))
+    readResult = Console.ReadLine();
+    if (int.TryParse(readResult, out numericValue))
     {
-        Console.WriteLine($"The name {name} starts with 'B'!");
+        if (numericValue >= 5 && numericValue <= 10)
+        {
+            Console.WriteLine($"Your input value {numericValue} has been accepted.");
+            validNummer = true;
+        }
+        
+        else
+        {
+            Console.WriteLine($"You entered {numericValue}. Please enter a number between 5 and 10.");
+        }
+
+    } else
+    {
+        Console.WriteLine("Sorry, you entered an invalid number, please try again");
     }
-}
+} while (validNummer == false);
