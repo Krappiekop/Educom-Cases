@@ -1,28 +1,26 @@
-﻿string? readResult;
-int numericValue = 0;
-bool validNummer = false;
+﻿using System.Numerics;
 
+string[] values = { "12.3", "45", "ABC", "11", "DEF" };
+int result = 0;
+int Total = 0;
+string Message = "";
+string ABC = "";
 
-Console.WriteLine("Vul een geheel getal in tusseen de 5 en 10.");
-
-do
+foreach (string i in values)
 {
-    readResult = Console.ReadLine();
-    if (int.TryParse(readResult, out numericValue))
+    if (int.TryParse(i, out result))
     {
-        if (numericValue >= 5 && numericValue <= 10)
-        {
-            Console.WriteLine($"Your input value {numericValue} has been accepted.");
-            validNummer = true;
-        }
+        Console.WriteLine($"Integer: {result}");
         
-        else
-        {
-            Console.WriteLine($"You entered {numericValue}. Please enter a number between 5 and 10.");
-        }
-
-    } else
-    {
-        Console.WriteLine("Sorry, you entered an invalid number, please try again");
     }
-} while (validNummer == false);
+    else
+    {
+        ABC += i;
+    }
+
+    Total += result;
+    Message += ABC;
+}
+
+Console.WriteLine($"{Total}");
+Console.WriteLine($"{Message}");
