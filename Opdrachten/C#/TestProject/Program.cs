@@ -1,26 +1,28 @@
-﻿using System.Numerics;
+﻿const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
 
-string[] values = { "12.3", "45", "ABC", "11", "DEF" };
-int result = 0;
-int Total = 0;
-string Message = "";
-string ABC = "";
+string output = "";
 
-foreach (string i in values)
-{
-    if (int.TryParse(i, out result))
-    {
-        Console.WriteLine($"Integer: {result}");
-        
-    }
-    else
-    {
-        ABC += i;
-    }
+const string openSpan = "<span>";
+const string closeSpan = "</span>";
+const string openDiv = "<div>";
+const string closeDiv = "</div>";
 
-    Total += result;
-    Message += ABC;
-}
+int openingPosition = input.IndexOf(openSpan);
+int closingPosition = input.IndexOf(closeSpan);
 
-Console.WriteLine($"{Total}");
-Console.WriteLine($"{Message}");
+openingPosition += openSpan.Length;
+int length = closingPosition - openingPosition;
+
+string quantity = input.Substring(openingPosition, length);
+
+
+int startOpenDiv = input.IndexOf(openDiv);
+startOpenDiv += 1;
+int startCloseDiv = input.IndexOf(closeDiv);
+startCloseDiv += 1;
+
+output = input.Remove(startCloseDiv, openDiv.Length);
+output = output.Remove(startOpenDiv, closeDiv.Length);
+
+Console.WriteLine($"Quantity: {quantity}");
+Console.WriteLine($"Output: {output}");
