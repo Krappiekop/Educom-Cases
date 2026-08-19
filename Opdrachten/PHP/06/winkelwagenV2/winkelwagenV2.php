@@ -1,5 +1,4 @@
 <?php
-var_dump($_POST);
 include 'item_array.php';
 
 session_start();
