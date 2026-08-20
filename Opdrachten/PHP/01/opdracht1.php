@@ -9,8 +9,8 @@ $hobbie3 = "Boeken lezen";
 
 $overigeInfo = "Ik ben dislect.";
 
-echo "Mijn naam is $name <br/>" .
-    "Ik ben $leeftijd jaar en woon in <br/>" .
+echo "Mijn naam is $name <br/>
+    Ik ben $leeftijd jaar en woon in $woonplaats.<br/>" .
     "<br/>" .
     "Mijn hobbies zijn:<br/>" .
     "1. $hobbie1 <br/>" .

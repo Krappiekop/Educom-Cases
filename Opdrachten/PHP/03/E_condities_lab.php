@@ -31,7 +31,7 @@ echo "<br/>"
 
 <?php
 $dice1 = 3;
-$dice2 = "3";
+$dice2 = 3;
 
 // == kijkt of variabelen dezelfde waarde hebben.
 if ($dice1 == $dice2) {
@@ -43,5 +43,3 @@ elseif ($dice2 === $dice3) {
 }
 echo "<br/>"
     ?>
-
-<?php

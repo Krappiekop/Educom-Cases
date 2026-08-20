@@ -1,4 +1,24 @@
 <?php
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "php_opdrachten";
+$cxn = mysqli_connect($host,$user,$password,$dbname)
+or die ("Couldn't connect to server");
+$query = "SELECT * FROM gebruikers";
+$result = mysqli_query($cxn,$query)
+or die ("Couldn't execute query.");
+while ($row = mysqli_fetch_assoc($result)) {
+    foreach($row as $colname => $value) {
+        echo $colname. ": ".$value."<br>";
+    }
+	echo "<br>";
+}
+mysqli_close($cxn);
+ 
+?>
+
+<?php
 $columns = array("name", "adress");
 
 
