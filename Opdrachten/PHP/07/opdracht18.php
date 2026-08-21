@@ -5,7 +5,7 @@ class Character
     public $type;
     public $health;
 
-    function __construct($name = '', $type = 'human', $health = '100')
+    function __construct($name = '', $type = 'Human', $health = '100')
     {
         $this->name = $name;
         $this->type = $type;
@@ -19,10 +19,18 @@ class Character
             "Health: " . $this->health . "<br>";
     }
 
-    function attack($damage, $damageType = "normal"){
-        return $damage = ();
+    function attack($damageType = "normal"){
+        if ($damageType == "normal"){
+            $damage = 20;
+            echo "Attack damage is $damage<br><br>";
+        } elseif ($damageType == "light"){
+            $damage = 15;
+            echo "Attack damage is $damage<br><br>";
+        } elseif ($damageType == "heavy"){
+            $damage = 25;
+            echo "Attack damage is $damage<br><br>";
+        }
     }
-
 }
 
 class Dwarf extends Character
@@ -31,6 +39,11 @@ class Dwarf extends Character
     {
         parent::__construct($name, 'Dwarf', '80');
     }
+    function attack($damageType = "heavy")
+    {
+        parent::attack($damageType);
+    }
+
 }
 
 class Elf extends Character
@@ -39,17 +52,26 @@ class Elf extends Character
     {
         parent::__construct($name, 'Elf', '120');
     }
+    function attack($damageType = "light")
+    {
+        parent::attack($damageType);
+    }
 
 }
 
 $human = new Character('Player1');
 $human->get_details();
-
+$human->attack();
 
 $dwarf = new Dwarf('Player2');
 $dwarf->get_details();
+$dwarf->attack();
 
 $elf = new Elf('Player3');
 $elf->get_details();
+$elf->attack();
 
-$human->attack($dwarf);
+
+
+
+

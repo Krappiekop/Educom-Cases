@@ -4,24 +4,20 @@ $user = "root";
 $password = "";
 $dbname = "php_opdrachten";
 $cxn = mysqli_connect($host,$user,$password,$dbname)
-or die ("Couldn't connect to server");
+	or die ("Couldn't connect to server");
 $query = "SELECT * FROM gebruikers";
 $result = mysqli_query($cxn,$query)
-or die ("Couldn't execute query.");
-while ($row = mysqli_fetch_assoc($result)) {
-    foreach($row as $colname => $value) {
-        echo $colname. ": ".$value."<br>";
-    }
-	echo "<br>";
-}
-mysqli_close($cxn);
- 
-?>
+	or die ("Couldn't execute query.");
 
-<?php
-$columns = array("name", "adress");
+// --------------------------------------------------
 
+$columns = array();
+$header = mysqli_fetch_fields($result);
+ 	foreach ($header as $value){
+		$columns[] = $value->name;
+	}
 
+// --------------------------------------------------
 
 if (isset($_POST['column_name'])) {
 	$button_name = $_POST['column_name'];
@@ -33,6 +29,7 @@ if ($_POST[$button_name."_volgorde"] == "ASC") {
 		${$button_name."_volgorde"} = "ASC";
 	}
 	echo "De volgorde is nu: " . $button_name ." ".${$button_name."_volgorde"};
+	$newQuery = "SELECT * FROM gebruikers ORDER BY $button_name ".${$button_name."_volgorde"};
 	echo "<br>";
 
 } else {
@@ -55,4 +52,31 @@ for ($i = 0; $i < sizeof($columns); $i++) {
 }
 echo "</form>\n";
 
+// -------------------------- Table maken ------------------------
+
+if (isset($newQuery)){
+	$query = $newQuery;
+} else {
+	$query = "SELECT * FROM gebruikers";
+}
+$result = mysqli_query($cxn,$query)
+	or die ("Couldn't execute query.");
+
+echo "<table border='1'>";
+echo "<tr>";
+ 	foreach ($header as $value){
+		echo "<th>" . $value->name . "</th>";
+	}
+echo "</tr>";
+
+while ($rij = mysqli_fetch_assoc($result)) {
+	echo "<tr>";
+	foreach ($rij as $colname => $value){
+		echo "<td>" . $value . "</td>";
+	}
+    echo "</tr>";
+}
+echo "</table>";
+
+mysqli_close($cxn);
 ?>
