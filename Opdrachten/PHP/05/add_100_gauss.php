@@ -6,5 +6,5 @@ function grauss_som($getal){
     return $oplossing;
 }
 
-echo grauss_som(100);
+echo grauss_som(50);
 ?>

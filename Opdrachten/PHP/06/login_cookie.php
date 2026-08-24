@@ -3,7 +3,9 @@ var_dump($_POST);
 var_dump($_COOKIE);
 
 if (isset($_POST['naam']) != ""){
+
     setcookie('cookie', $_POST['naam']);
+    
     if (isset($_COOKIE['cookie']) != ""){
         $html_string = "Welkom ".$_COOKIE['cookie'];
     } else {

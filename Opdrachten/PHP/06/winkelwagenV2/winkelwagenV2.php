@@ -4,10 +4,10 @@ include 'item_array.php';
 session_start();
 
 for ($i = 0; $i < sizeof($store_items); $i++) {
-    if (isset($_POST['winkelwagen_leeg']) != "") {
-        $_SESSION[$store_items[$i] . '_winkelmand'] = 0;
-    } else {
+    if (isset($_POST['winkelwagen_leeg'])) {
         $_SESSION[$store_items[$i] . '_winkelmand'] = ($_SESSION[$store_items[$i] . '_winkelmand'] ?? 0) + $_POST['n' . $store_items[$i]];
+    } else {
+        $_SESSION[$store_items[$i] . '_winkelmand'] = 0;
     }
 }
 ?>

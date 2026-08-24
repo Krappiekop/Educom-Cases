@@ -76,7 +76,7 @@ $html_string .= "    </table>
         if (isset($_POST["knop_$animal->name"])) {
             echo $animal->talk();
             break;
-        } 
+        }
         ;
     }
     ?>

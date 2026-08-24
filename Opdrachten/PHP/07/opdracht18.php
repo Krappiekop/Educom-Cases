@@ -5,7 +5,7 @@ class Character
     public $type;
     public $health;
 
-    function __construct($name = '', $type = 'Human', $health = '100')
+    function __construct($name = '', $type = 'Human', $health = 100)
     {
         $this->name = $name;
         $this->type = $type;
@@ -37,7 +37,7 @@ class Dwarf extends Character
 {
     function __construct($name = '')
     {
-        parent::__construct($name, 'Dwarf', '80');
+        parent::__construct($name, 'Dwarf', 80);
     }
     function attack($damageType = "heavy")
     {
@@ -50,7 +50,7 @@ class Elf extends Character
 {
     function __construct($name = '')
     {
-        parent::__construct($name, 'Elf', '120');
+        parent::__construct($name, 'Elf', 120);
     }
     function attack($damageType = "light")
     {
