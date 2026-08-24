@@ -1,0 +1,1 @@
+<?php $store_items = array("Appel", "Citroen", "Limoen", "Mango", "Grapefruit");
