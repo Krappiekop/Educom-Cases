@@ -34,6 +34,13 @@ class Grizzly extends Bear
     }
 }
 
+$Bear = new Grizzly("Sjaak");
+echo "<pre>";
+var_dump($Bear);
+echo "</pre>";
+
 $Grizzly = new Grizzly("Jon");
-$Grizzly->toon();
-$Grizzly->roars();
+echo "<pre>";
+var_dump($Grizzly);
+echo "</pre>";
+
