@@ -16,7 +16,7 @@ abstract class Bear
     // gewone, uitgewerkte method: elk instrument heeft dit gedrag
     public function toon()
     {
-        return $this->naam . "is $this->gewicht kg zwaar en is $this->kleur.";
+        return $this->naam . " is $this->gewicht kg zwaar en is $this->kleur.";
     }
 
     abstract public function roars();
@@ -34,13 +34,17 @@ class Grizzly extends Bear
     }
 }
 
-$Bear = new Grizzly("Sjaak");
-echo "<pre>";
-var_dump($Bear);
-echo "</pre>";
-
 $Grizzly = new Grizzly("Jon");
 echo "<pre>";
 var_dump($Grizzly);
 echo "</pre>";
 
+echo $Grizzly->toon();
+echo "<br>";
+
+
+if ($Grizzly->roars()){
+    echo "$Grizzly->naam roars.";
+} else {
+    echo "$Grizzly->naam doesnt roar.";
+}

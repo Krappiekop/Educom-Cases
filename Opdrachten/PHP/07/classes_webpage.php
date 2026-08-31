@@ -1,6 +1,5 @@
 <?php
 
-use Dom\DocumentType;
 class WebPage
 {
     public $Opmaak;

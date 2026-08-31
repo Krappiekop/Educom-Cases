@@ -2,7 +2,7 @@
 
 interface Identifier
 {
-    public function __construct($id);
+    public function __construct($id); //<-- nooit constructor in interface.
     public function getId();
     public function checkFileName($filename);
     public function showImage();
@@ -57,7 +57,7 @@ class User implements Identifier
 $user = new User(7);
 
 
-if ($user->checkFileName('foto.png')) {
+if ($user->checkFileName('foto.PNG')) {
     echo "Bestandsnaam is geldig.<br>";
 } else {
     echo "Ongeldige bestandsnaam.<br>";
@@ -69,3 +69,4 @@ $user->showPassport();
 $user2 = new User(8);
 $user2->checkFileName('document.pdf'); // niet toegestaan
 $user2->showPassport();
+
