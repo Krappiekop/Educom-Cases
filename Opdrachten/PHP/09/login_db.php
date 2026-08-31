@@ -1,10 +1,13 @@
 <?php
 session_start();
 
-$gebruikers = [
-    'bartijn' => 'wachtwoord123',
-    'root'  => 'admin',
-];
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "php_opdrachten";
+
+$cxn = mysqli_connect($host,$user,$password,$dbname)
+	or die ("Couldn't connect to server");
 
 $foutmelding = '';
 
@@ -15,8 +18,18 @@ if (isset($_GET["Logout"])) {
 
 // Inlog en session set
 if (isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
-    if (isset($gebruikers[$_POST['gebruikersnaam']]) && $gebruikers[$_POST['gebruikersnaam']] === $_POST['wachtwoord']) {
-        $_SESSION['ingelogde_gebruiker'] = $_POST['gebruikersnaam'];
+    $gebruikersnaam = $_POST['gebruikersnaam'];
+    $wachtwoord = $_POST['wachtwoord'];
+
+    $query = "SELECT * FROM accounts WHERE Gebruikersnaam = ?";
+    $stmt = mysqli_prepare($cxn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $gebruikersnaam);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $gebruiker = mysqli_fetch_assoc($result);
+
+    if ($gebruiker && $gebruiker['Wachtwoord'] === $wachtwoord) {
+        $_SESSION['ingelogde_gebruiker'] = $gebruikersnaam;
     } else {
         $foutmelding = "Gebruikersnaam en/of wachtwoord klopt niet.";
     }
