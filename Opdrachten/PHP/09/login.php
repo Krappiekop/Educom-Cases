@@ -10,11 +10,14 @@ $foutmelding = '';
 
 // Uitlog
 if (isset($_GET["Logout"])) {
-    unset($_SESSION['ingelogde_gebruiker']);
+    //unset($_SESSION['ingelogde_gebruiker']);
+    session_destroy();
 }
 
 // Inlog en session set
 if (isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
+
+
     if (isset($gebruikers[$_POST['gebruikersnaam']]) && $gebruikers[$_POST['gebruikersnaam']] === $_POST['wachtwoord']) {
         $_SESSION['ingelogde_gebruiker'] = $_POST['gebruikersnaam'];
     } else {

@@ -1,13 +1,8 @@
 <?php
 session_start();
+require "config_login_db.php";
+$databaseConnectie = new databaseService();
 
-$host = "localhost";
-$user = "root";
-$password = "";
-$dbname = "php_opdrachten";
-
-$cxn = mysqli_connect($host, $user, $password, $dbname)
-    or die("Couldn't connect to server");
 
 $foutmelding = '';
 
@@ -21,12 +16,14 @@ if (isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     $gebruikersnaam = $_POST['gebruikersnaam'];
     $wachtwoord = $_POST['wachtwoord'];
 
+    $databaseConnectie->connect();
+
     $query = "SELECT * FROM accounts WHERE Gebruikersnaam = ?";
-    $stmt = mysqli_prepare($cxn, $query);
-    mysqli_stmt_bind_param($stmt, "s", $gebruikersnaam);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $gebruiker = mysqli_fetch_assoc($result);
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$gebruikersnaam]);
+    $gebruiker = $stmt->fetch();
+
+    $databaseConnectie->disconnect();
 
     if ($gebruiker && $gebruiker['Wachtwoord'] === $wachtwoord) {
         $_SESSION['ingelogde_gebruiker'] = $gebruikersnaam;
